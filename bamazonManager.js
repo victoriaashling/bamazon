@@ -65,32 +65,39 @@ function viewLowInv() {
             choices.push(product.item_id + " || " + product.product_name + " || " + product.stock_quantity);
         })
 
-        inquirer.prompt([
-            {
-                message: "Would you like to add stock to any of these products?",
-                name: "toAddStock",
-                type: "confirm",
-            }
-        ]).then(answer => {
-            switch (answer.toAddStock) {
-                case true:
-                    inquirer.prompt([
-                        {
-                            message: "Which item would you like to restock?",
-                            name: "restockItem",
-                            type: "list",
-                            choices: choices
-                        }
-                    ]).then(answer => {
-                        let ansArr = answer.restockItem.split(" || ");
-                        addStock(ansArr[0], ansArr[1], ansArr[2]); 
-                    })
-                    break;
-                case false:
-                    managerStart();
-                    break;
-            }
-        })
+        if (!res[0]) {
+            console.log("There are no low-inventory products at this time.");
+            managerStart();
+        }
+        else {
+
+            inquirer.prompt([
+                {
+                    message: "Would you like to add stock to any of these products?",
+                    name: "toAddStock",
+                    type: "confirm",
+                }
+            ]).then(answer => {
+                switch (answer.toAddStock) {
+                    case true:
+                        inquirer.prompt([
+                            {
+                                message: "Which item would you like to restock?",
+                                name: "restockItem",
+                                type: "list",
+                                choices: choices
+                            }
+                        ]).then(answer => {
+                            let ansArr = answer.restockItem.split(" || ");
+                            addStock(ansArr[0], ansArr[1], ansArr[2]); 
+                        })
+                        break;
+                    case false:
+                        managerStart();
+                        break;
+                }
+            })
+        }
     })
 }
 
@@ -119,7 +126,6 @@ function restockChooseItem() {
 }
 
 function addStock(itemID, itemName, currentUnits) {
-    console.log(itemID, currentUnits);
     inquirer.prompt([
         {
             message: "How many units would you like to add to this item's inventory?",
