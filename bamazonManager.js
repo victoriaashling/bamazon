@@ -92,7 +92,6 @@ function viewLowInv() {
             }
         })
     })
-
 }
 
 function restockChooseItem() {
@@ -176,7 +175,5 @@ function addProduct() {
                 managerStart();
             }
         )
-
     })
-
 }

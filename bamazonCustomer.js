@@ -39,7 +39,6 @@ let customerStart = () => {
                     exitFlow();
                 } 
                 else {
-                    // console.log(newStock);
                     connection.query("UPDATE products SET ? WHERE ?", 
                         [
                             {stock_quantity: newStock}, 
@@ -69,8 +68,7 @@ let customerStart = () => {
                 }
             })
         })
-    })
-    
+    })  
 }
 
 let exitFlow = () => {
