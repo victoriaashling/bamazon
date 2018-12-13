@@ -1,8 +1,8 @@
 # Bamazon CLI App
 
-## Overview
+This app was built using a mySQL database and is operated through the command line with node.
 
-This application has three different flows - client, manager, and supervisor - with different options accessible to each related to a hypothetical online store. 
+There three different flows - client, manager, and supervisor - with different options accessible to each related to a hypothetical online store. 
 
 
 ### Customer
